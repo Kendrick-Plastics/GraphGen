@@ -85,4 +85,5 @@ plt.title("Average Task Time")
 
 plt.subplots_adjust(left=0.35)
 
-plt.show()
+# plt.show()
+plt.savefig("testGraph.png")

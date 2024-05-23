@@ -8,9 +8,38 @@
         <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
     </head>
     <body>
-        <h1>Hello There in HEADER</h1>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js"></script>
+        <div class="title-div">
+            <h1 class="title">Graph Generator</h1>
+        </div>
 
-        
+        <div class="control-preview-container">
+            <div class="image-preview">
+                <img src="{{ url_for('static', filename='Images/testGraph.png') }}" alt="It Broken">
+            </div>
+            <div class="control-panel">
+                <div class="dropdown-panel">
+                    <label for="created">Ticket Created</label>
+                    <select name="created" id="created">
+                    </select>
+
+                    <label for="resolved">Ticket Resolved</label>
+                    <select name="resolved" id="resolved">
+                    </select>
+
+                    <label for="category">Category</label>
+                    <select name="category" id="category">
+                    </select>
+
+                </div>
+                <div class="button-panel">
+                    <button id="upload">Upload</button>
+                    <button id="generate">Generate</button>
+                    <button id="download">Download</button>
+                </div>
+            </div>
+
+        </div>
 
         <script src="{{url_for('static', filename='main.js')}}"></script>
     </body>
