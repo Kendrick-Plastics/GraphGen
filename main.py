@@ -24,5 +24,4 @@ def getHeaders(data):
     socketio.emit("graph_response", {"image_data": graph})
 
 if __name__ == "__main__":
-    app.debug = True
     socketio.run(app)
