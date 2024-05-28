@@ -1,9 +1,11 @@
 var socket = io();
+let graphResponse = '';
 
 // Receive and display the final graph
 socket.on("graph_response", function(data) {
-  const imageElement = document.getElementById("graph-img");
-  imageElement.src = 'data:image/png;base64' + data.image_data;
+  const imageElement = document.getElementById('graph');
+  graphResponse = data.image_data;
+  imageElement.src = 'data:image/png;base64,' + data.image_data;
 });
 
 // Update the drop downs with the returned data
@@ -41,6 +43,16 @@ socket.on("headers", function(data) {
   });
 });
  
+function downloadImage () {
+  document.getElementById('download').addEventListener('click', () => {
+    const link = document.createElement('a');
+    link.href = 'data:image/png;base64,' + graphResponse;
+    link.download = 'graph.png';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  })
+}
 
 // Gives the server the header selections and gens the graph
 function generateGraph () {
@@ -86,6 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', function () {
   var button = document.getElementById('download');
   button.addEventListener('click', function () {
+    downloadImage();
   });
 });
 

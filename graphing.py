@@ -1,4 +1,6 @@
 import seaborn as sns
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -100,5 +102,4 @@ def makeGraph(graphData, create, resolve, category):
 
     img_io = base64.b64encode(img_io.getvalue()).decode("utf-8")
     # img_io = base64.b64encode(img_io.getvalue())
-
-    return plt
+    return img_io
