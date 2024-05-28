@@ -15,24 +15,25 @@
 
         <div class="control-preview-container">
             <div class="image-preview">
-                <img src="{{ url_for('static', filename='Images/testGraph.png') }}" alt="It Broken">
+                <img id="graph-img" src="{{ url_for('static', filename='Images/testGraph.png') }}" alt="It Broken">
             </div>
             <div class="control-panel">
                 <div class="dropdown-panel">
-                    <label for="created">Ticket Created</label>
+                    <label for="created">Created</label>
                     <select name="created" id="created">
                     </select>
 
-                    <label for="resolved">Ticket Resolved</label>
+                    <label for="resolved">Solved</label>
                     <select name="resolved" id="resolved">
                     </select>
 
-                    <label for="category">Category</label>
+                    <label for="category">Support Type</label>
                     <select name="category" id="category">
                     </select>
 
                 </div>
                 <div class="button-panel">
+                    <input type="file" id="image-upload-input" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
                     <button id="upload">Upload</button>
                     <button id="generate">Generate</button>
                     <button id="download">Download</button>

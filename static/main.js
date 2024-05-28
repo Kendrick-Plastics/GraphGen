@@ -1,29 +1,97 @@
 var socket = io();
 
-function sendMessage() {
-    var message = 'Hello from client';
-    socket.emit('message', message);
-}
-
-socket.on('response', function(message) {
-    console.log('Received response:', message);
+// Receive and display the final graph
+socket.on("graph_response", function(data) {
+  const imageElement = document.getElementById("graph-img");
+  imageElement.src = 'data:image/png;base64' + data.image_data;
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    var button = document.getElementById('upload');
-    button.addEventListener('click', function() {
-        sendMessage();
-    });
+// Update the drop downs with the returned data
+socket.on("headers", function(data) {
+  const createdDropDown = document.getElementById("created");
+  const resolvedDropDown = document.getElementById("resolved");
+  const categoryDropDown = document.getElementById("category");
+
+  createdDropDown.innerHTML = '';
+  resolvedDropDown.innerHTML = '';
+  categoryDropDown.innerHTML = '';
+
+  data.forEach(item => {
+    const optionChild = document.createElement("option")
+    optionChild.value = item;
+    optionChild.textContent = item;
+
+    createdDropDown.appendChild(optionChild);
   });
 
-document.addEventListener('DOMContentLoaded', function() {
-    var button = document.getElementById('download');
-    button.addEventListener('click', function() {
-    });
+  data.forEach(item => {
+    const optionChild = document.createElement("option")
+    optionChild.value = item;
+    optionChild.textContent = item;
+
+    resolvedDropDown.appendChild(optionChild);
   });
 
-document.addEventListener('DOMContentLoaded', function() {
-    var button = document.getElementById('generate');
-    button.addEventListener('click', function() {
-    });
+  data.forEach(item => {
+    const optionChild = document.createElement("option")
+    optionChild.value = item;
+    optionChild.textContent = item;
+
+    categoryDropDown.appendChild(optionChild);
   });
+});
+ 
+
+// Gives the server the header selections and gens the graph
+function generateGraph () {
+  const createdDropDown = document.getElementById("created");
+  const resolvedDropDown = document.getElementById("resolved");
+  const categoryDropDown = document.getElementById("category");
+
+  const data = {
+    created: createdDropDown.value,
+    resolved: resolvedDropDown.value,
+    category: categoryDropDown.value
+  };
+  
+  socket.emit("header-selection", data);
+};
+
+// The function that sends the uploaded file to the server
+function uploadFile() {
+  var fileInput = document.getElementById("image-upload-input");
+  var file = fileInput.files[0];
+
+  if (file) {
+    const reader = new FileReader();
+
+    reader.onload = function(event) {
+      const fileData = event.target.result;
+      socket.emit("file-upload", {name: file.name, data: fileData});
+    } 
+
+    reader.readAsArrayBuffer(file);
+  } else {
+    console.error("No file selected.");
+  }
+};
+
+document.addEventListener('DOMContentLoaded', function () {
+  var button = document.getElementById('upload');
+  button.addEventListener('click', function () {
+    uploadFile();
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  var button = document.getElementById('download');
+  button.addEventListener('click', function () {
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  var button = document.getElementById('generate');
+  button.addEventListener('click', function () {
+    generateGraph();
+  });
+});
