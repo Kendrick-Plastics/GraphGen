@@ -18,6 +18,7 @@ socket.on("headers", function(data) {
   resolvedDropDown.innerHTML = '';
   categoryDropDown.innerHTML = '';
 
+  // Update created dropdown
   data.forEach(item => {
     const optionChild = document.createElement("option")
     optionChild.value = item;
@@ -26,6 +27,7 @@ socket.on("headers", function(data) {
     createdDropDown.appendChild(optionChild);
   });
 
+  // Update resolved dropdown
   data.forEach(item => {
     const optionChild = document.createElement("option")
     optionChild.value = item;
@@ -33,7 +35,8 @@ socket.on("headers", function(data) {
 
     resolvedDropDown.appendChild(optionChild);
   });
-
+    
+  // Update category dropdown
   data.forEach(item => {
     const optionChild = document.createElement("option")
     optionChild.value = item;
@@ -43,6 +46,7 @@ socket.on("headers", function(data) {
   });
 });
  
+// Download the finished graph
 function downloadImage () {
   document.getElementById('download').addEventListener('click', () => {
     const link = document.createElement('a');
@@ -88,6 +92,7 @@ function uploadFile() {
   }
 };
 
+// Attach function to the upload button click button
 document.addEventListener('DOMContentLoaded', function () {
   var button = document.getElementById('upload');
   button.addEventListener('click', function () {
@@ -95,6 +100,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
+// Attach function to the download button click button
 document.addEventListener('DOMContentLoaded', function () {
   var button = document.getElementById('download');
   button.addEventListener('click', function () {
@@ -102,6 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
+// Attach function to the generate button click button
 document.addEventListener('DOMContentLoaded', function () {
   var button = document.getElementById('generate');
   button.addEventListener('click', function () {

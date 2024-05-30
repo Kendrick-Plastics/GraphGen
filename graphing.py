@@ -1,5 +1,6 @@
 import seaborn as sns
 import matplotlib
+# Prevents async graph gen error
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
@@ -8,6 +9,7 @@ from datetime import datetime, timedelta
 from io import BytesIO
 import base64
 
+# Pulls column names from excel sheet
 def getHeaders(graphData):
     graphData = BytesIO(graphData)
     return np.ndarray.tolist( pd.read_excel(graphData).columns.values);
@@ -95,11 +97,11 @@ def makeGraph(graphData, create, resolve, category):
 
     plt.subplots_adjust(left=0.35)
 
+    # Saves the image to BytesIO object rather than saving it to the disk, saves read and right actions
     img_io = BytesIO()
     plt.savefig(img_io, format="png")
     img_io.seek(0)
     plt.close()
 
     img_io = base64.b64encode(img_io.getvalue()).decode("utf-8")
-    # img_io = base64.b64encode(img_io.getvalue())
     return img_io

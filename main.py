@@ -6,10 +6,12 @@ app = Flask(__name__)
 socketio = SocketIO(app)
 
 
+# Serves up the home page
 @app.route("/")
 def home():
     return render_template("main.html")
 
+# Handles the excel file upload
 @socketio.on("file-upload")
 def getFileUpload(data):
     file_data = data["data"]
@@ -23,5 +25,6 @@ def getHeaders(data):
     graph = graphing.makeGraph(session["data"], data["created"], data["resolved"], data["category"])
     socketio.emit("graph_response", {"image_data": graph})
 
+# RUN IT BABYYYYY
 if __name__ == "__main__":
     socketio.run(app)
