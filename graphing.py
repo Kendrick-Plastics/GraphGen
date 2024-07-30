@@ -98,7 +98,7 @@ def makeGraph(graphData, create, resolve, category):
     # Add the number of tickets to the left
     for index, value in enumerate(bar_keys):
         len_value = len(support[value])
-        plt.text(bar_values[index], index, f"{len_value}", va="center")
+        plt.text(bar_values[index] + .3, index, f"{len_value}", va="center")
 
     plt.xlim(0, max(bar_values) + 5)
 
