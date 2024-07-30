@@ -27,6 +27,8 @@ socket.on("headers", function(data) {
     createdDropDown.appendChild(optionChild);
   });
 
+  createdDropDown.value = 'Created';
+
   // Update resolved dropdown
   data.forEach(item => {
     const optionChild = document.createElement("option")
@@ -35,6 +37,8 @@ socket.on("headers", function(data) {
 
     resolvedDropDown.appendChild(optionChild);
   });
+
+  // resolvedDropDown.value = 'Solved Time';
     
   // Update category dropdown
   data.forEach(item => {
@@ -45,6 +49,8 @@ socket.on("headers", function(data) {
     categoryDropDown.appendChild(optionChild);
   });
 });
+
+    // categoryDropDown.value = 'Support Type';
  
 // Download the finished graph
 function downloadImage () {

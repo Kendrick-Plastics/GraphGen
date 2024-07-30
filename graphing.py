@@ -64,7 +64,7 @@ def makeGraph(graphData, create, resolve, category):
 
     averages = {}
 
-    # Creates a list of entries and finds the average number of minutes spent on them
+    # Creates a list of entries and finds the average number of hours spent on them
     for key in support.keys():
         averages[key] = 0
         for entry in support[key]:
@@ -94,6 +94,13 @@ def makeGraph(graphData, create, resolve, category):
     plt.xlabel("Days")
     plt.ylabel("Categories")
     plt.title("Average Task Time")
+
+    # Add the number of tickets to the left
+    for index, value in enumerate(bar_keys):
+        len_value = len(support[value])
+        plt.text(bar_values[index], index, f"{len_value}", va="center")
+
+    plt.xlim(0, max(bar_values) + 5)
 
     plt.subplots_adjust(left=0.35)
 
