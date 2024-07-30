@@ -38,7 +38,7 @@ socket.on("headers", function(data) {
     resolvedDropDown.appendChild(optionChild);
   });
 
-  // resolvedDropDown.value = 'Solved Time';
+  resolvedDropDown.value = 'Solved Time';
     
   // Update category dropdown
   data.forEach(item => {
@@ -48,9 +48,11 @@ socket.on("headers", function(data) {
 
     categoryDropDown.appendChild(optionChild);
   });
+
+  categoryDropDown.value = 'Support Type';
+
 });
 
-    // categoryDropDown.value = 'Support Type';
  
 // Download the finished graph
 function downloadImage () {
