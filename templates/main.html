@@ -1,49 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Best App Ever</title>
-        <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
-    </head>
-    <body>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js"></script>
-        <div class="title-div">
-            <h1 class="title">Graph Generator</h1>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Best App Ever</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js"></script>
+    <div class="title-div">
+        <h1 class="title">Graph Generator</h1>
+    </div>
+
+    <div class="control-preview-container">
+        <div class="image-preview">
+            <img id="graph" src="{{ url_for('static', filename='Images/testGraph.png') }}" alt="It Broken">
+        </div>
+        <div class="control-panel">
+            <div class="dropdown-panel">
+                <label for="created">Created</label>
+                <select name="created" id="created">
+                </select>
+
+                <label for="resolved">Solved</label>
+                <select name="resolved" id="resolved">
+                </select>
+
+                <label for="category">Support Type</label>
+                <select name="category" id="category">
+                </select>
+
+            </div>
+            <div class="button-panel">
+                <input type="file" id="image-upload-input" accept=".csv">
+                <button id="upload">Upload</button>
+
+                <button id="generate">Generate</button>
+
+                <button id="download">Download</button>
+            </div>
         </div>
 
-        <div class="control-preview-container">
-            <div class="image-preview">
-                <img id="graph" src="{{ url_for('static', filename='Images/testGraph.png') }}" alt="It Broken">
-            </div>
-            <div class="control-panel">
-                <div class="dropdown-panel">
-                    <label for="created">Created</label>
-                    <select name="created" id="created">
-                    </select>
+    </div>
 
-                    <label for="resolved">Solved</label>
-                    <select name="resolved" id="resolved">
-                    </select>
+    <script src="{{url_for('static', filename='main.js')}}"></script>
+</body>
 
-                    <label for="category">Support Type</label>
-                    <select name="category" id="category">
-                    </select>
-
-                </div>
-                <div class="button-panel">
-                    <input type="file" id="image-upload-input" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
-                    <button id="upload">Upload</button>
-
-                    <button id="generate">Generate</button>
-
-                    <button id="download">Download</button>
-                </div>
-            </div>
-
-        </div>
-
-        <script src="{{url_for('static', filename='main.js')}}"></script>
-    </body>
 </html>

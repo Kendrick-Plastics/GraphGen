@@ -12,13 +12,13 @@ import base64
 # Pulls column names from excel sheet
 def getHeaders(graphData):
     graphData = BytesIO(graphData)
-    return np.ndarray.tolist( pd.read_excel(graphData).columns.values);
+    return np.ndarray.tolist( pd.read_csv(graphData).columns.values);
 
 # Read our CSV and convert it into a pandas dataframe
 # data = pd.read_csv("./All tickets.csv")
 def makeGraph(graphData, create, resolve, category):
     graphData = BytesIO(graphData)
-    data = pd.read_excel(graphData)
+    data = pd.read_csv(graphData)
 
     # Will be a dictionary with the key set to support type (ie Badge, KMES, Hardware, etch)
     # and the value will be set to an array where each entry is the amount of time it took to solve that problem
